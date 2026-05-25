@@ -2,11 +2,12 @@
 
 ### Learn while you translate, summarize & feel the vibe
 
-**BhasaBelle** is an AI-powered language assistant built with **FastAPI** and **Gemini API** that helps users:
-
+**BhasaBelle** is an AI-powered language assistant that helps users:
 - Translate text across languages  
 - Summarize lengthy content into concise insights  
-- Analyze sentiment and understand the vibe behind words  
+- Analyze sentiment and understand the vibe behind words
+
+Built using **Gemini API**, BhasaBelle makes language feel smarter, simpler, and a little more fun.
 
 Designed as a fun and elegant project, BhasaBelle blends intelligent language processing with a clean and approachable experience.
 
@@ -25,12 +26,11 @@ Designed as a fun and elegant project, BhasaBelle blends intelligent language pr
 ## Tech Stack
 
 - **Python**
-- **FastAPI**
 - **Gemini API**
 - **HTML**
 - **CSS**
 - **JavaScript**
-- **Uvicorn**
+- - **dotenv (.env for API key management)**
 
 ---
 
@@ -54,7 +54,9 @@ Create a virtual environment:
 python -m venv venv
 ```
 
-Activate the environment:
+Activate the virtual environment:
+
+**Windows**
 
 ```bash
 venv\Scripts\activate
@@ -66,16 +68,16 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the application:
+Create a `.env` file in the project folder and add your Gemini API key:
 
-```bash
-uvicorn main:app --reload
+```env
+GEMINI_API_KEY=your_api_key_here
 ```
 
-Open in browser:
+Run the project:
 
-```text
-http://127.0.0.1:8000/docs
+```bash
+python main.py
 ```
 
 ---
