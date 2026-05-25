@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Translator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        /*Custom Language Dropdown ── */
+        .lang-select-wrapper {
+            position: relative;
+        }
+
+        .lang-select-wrapper::after {
+            content: '❧';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--blush);
+            font-size: 16px;
+            pointer-events: none;
+        }
+
+        #translate-lang {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            border: 1.5px solid rgba(196,88,128,.22);
+            border-radius: 14px;
+            font-size: 14px;
+            font-family: 'Kiwi Maru', sans-serif;
+            color: var(--ink);
+            background: var(--parchment);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            transition: all 0.25s ease;
+        }
+
+        #translate-lang:focus {
+            outline: none;
+            border-color: var(--blush);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(210,127,160,.18);
+        }
+
+        #translate-lang option {
+            font-family: 'Kiwi Maru', sans-serif;
+            background: #fdf6ef;
+            color: var(--ink);
+            padding: 8px;
+        }
+
+        #translate-lang optgroup {
+            font-family: 'DotGothic16', monospace;
+            font-size: 11px;
+            color: var(--rose);
+            background: var(--sakura);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene" aria-hidden="true">
+        <div class="sky"></div>
+        <div class="stars">
+            <span class="star" style="--x:7%;--y:10%;--s:.6"></span>
+            <span class="star" style="--x:21%;--y:5%;--s:.4"></span>
+            <span class="star" style="--x:54%;--y:8%;--s:.7"></span>
+            <span class="star" style="--x:79%;--y:3%;--s:.5"></span>
+            <span class="star" style="--x:92%;--y:13%;--s:.3"></span>
+            <span class="star" style="--x:37%;--y:2%;--s:.5"></span>
+            <span class="star" style="--x:66%;--y:17%;--s:.4"></span>
+            <span class="star" style="--x:13%;--y:22%;--s:.3"></span>
+            <span class="star" style="--x:84%;--y:20%;--s:.5"></span>
+        </div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="hill hill-back"></div>
+        <div class="hill hill-mid"></div>
+        <div class="hill hill-front"></div>
+        <div class="tree tree-l"></div>
+        <div class="tree tree-r"></div>
+        <div class="lantern lantern-l">
+            <div class="ln-string"></div>
+            <div class="ln-glow"></div>
+            <div class="ln-body"></div>
+            <div class="ln-tassel"></div>
+        </div>
+        <div class="lantern lantern-r">
+            <div class="ln-string"></div>
+            <div class="ln-glow"></div>
+            <div class="ln-body"></div>
+            <div class="ln-tassel"></div>
+        </div>
+        <div class="petals">
+            <span class="petal" style="--px:10%;--pd:0s;--pp:9s"></span>
+            <span class="petal" style="--px:28%;--pd:2s;--pp:11s"></span>
+            <span class="petal" style="--px:52%;--pd:5s;--pp:8s"></span>
+            <span class="petal" style="--px:71%;--pd:1s;--pp:13s"></span>
+            <span class="petal" style="--px:88%;--pd:7s;--pp:10s"></span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>LingoGlow</h1>
+            <p>Learn while you translate, summarize & feel the vibe</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('translate')">Translate</button>
+            <button class="tab-btn" onclick="switchTab('summarize')">Summarize</button>
+            <button class="tab-btn" onclick="switchTab('sentiment')">Sentiment</button>
+        </div>
+
+        <!-- Translate Tab -->
+        <div id="translate" class="tab-content active">
+            <div class="card">
+                <div class="form-group">
+                    <label>Text to translate</label>
+                    <textarea id="translate-text" placeholder="Type something in English..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Target language</label>
+                    <div class="lang-select-wrapper">
+                        <select id="translate-lang">
+                                <option value="">✿ Choose a language...</option>
+
+                            <!-- Asian -->
+                            <optgroup label="✦ Asian Languages">
+                                <option value="Thai">Thai</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Korean">Korean</option>
+                                <option value="Chinese (Simplified)">Chinese (Simplified)</option>
+                                <option value="Chinese (Traditional)">Chinese (Traditional)</option>
+                                <option value="Vietnamese">Vietnamese</option>
+                                <option value="Indonesian">Indonesian</option>
+                                <option value="Malay">Malay</option>
+                                <option value="Filipino (Tagalog)">Filipino (Tagalog)</option>
+                                <option value="Burmese">Burmese</option>
+                                <option value="Khmer">Khmer</option>
+                                <option value="Lao">Lao</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Bengali">Bengali</option>
+                                <option value="Urdu">Urdu</option>
+                                <option value="Tamil">Tamil</option>
+                                <option value="Nepali">Nepali</option>
+                                <option value="Sinhala">Sinhala</option>
+                            </optgroup>
+                            <!-- European -->
+                            <optgroup label="✦ European Languages">
+                                <option value="Spanish">Spanish</option>
+                                <option value="French">French</option>
+                                <option value="German">German</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Portuguese">Portuguese</option>
+                                <option value="Dutch">Dutch</option>
+                                <option value="Russian">Russian</option>
+                                <option value="Polish">Polish</option>
+                                <option value="Swedish">Swedish</option>
+                                <option value="Norwegian">Norwegian</option>
+                                <option value="Danish">Danish</option>
+                                <option value="Finnish">Finnish</option>
+                                <option value="Greek">Greek</option>
+                                <option value="Czech">Czech</option>
+                                <option value="Romanian">Romanian</option>
+                                <option value="Hungarian">Hungarian</option>
+                                <option value="Ukrainian">Ukrainian</option>
+                            </optgroup>
+                            <!-- Middle East -->
+                            <optgroup label="✦ Middle Eastern Languages">
+                                <option value="Arabic">Arabic</option>
+                                <option value="Hebrew">Hebrew</option>
+                                <option value="Persian (Farsi)">Persian (Farsi)</option>
+                                <option value="Turkish">Turkish</option>
+                            </optgroup>
+                            <!-- African -->
+                            <optgroup label="✦ African Languages">
+                                <option value="Swahili">Swahili</option>
+                                <option value="Amharic">Amharic</option>
+                                <option value="Hausa">Hausa</option>
+                                <option value="Zulu">Zulu</option>
+                                <option value="Afrikaans">Afrikaans</option>
+                            </optgroup>
+                            <!-- Americas -->
+                            <optgroup label="✦ Americas">
+                                <option value="Brazilian Portuguese">🇧🇷 Brazilian Portuguese</option>
+                                <option value="Mexican Spanish">🇲🇽 Mexican Spanish</option>
+                                <option value="Haitian Creole">🇭🇹 Haitian Creole</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-submit" id="translate-btn" onclick="handleTranslate()">Translate & Learn</button>
+
+                <div class="loading" id="translate-loading">
+                    <div class="spinner"></div> Translating...
+                </div>
+
+                <div class="result-box" id="translate-result">
+                    <div class="result-title">Translation</div>
+                    <div class="result-content" id="translate-output"></div>
+
+                    <div class="result-title" style="margin-top: 1.5rem;">Romanization / Phonetic</div>
+                    <div class="result-content" id="translate-romaji"></div>
+
+                    <div class="result-title" style="margin-top: 1.5rem;">Word-by-Word Breakdown</div>
+                    <div class="breakdown" id="translate-breakdown"></div>
+                </div>
+                <div class="error" id="translate-error" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Summarize Tab -->
+        <div id="summarize" class="tab-content">
+            <div class="card">
+                <div class="form-group">
+                    <label>Text to summarize</label>
+                    <textarea id="summarize-text" placeholder="Paste a long text here..."></textarea>
+                </div>
+                <button class="btn-submit" id="summarize-btn" onclick="handleSummarize()">Summarize</button>
+
+                <div class="loading" id="summarize-loading">
+                    <div class="spinner"></div> Summarizing...
+                </div>
+
+                <div class="result-box" id="summarize-result">
+                    <div class="result-title">Summary</div>
+                    <div class="result-content" id="summarize-output"></div>
+                </div>
+                <div class="error" id="summarize-error" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Sentiment Tab -->
+        <div id="sentiment" class="tab-content">
+            <div class="card">
+                <div class="form-group">
+                    <label>Text to analyze</label>
+                    <textarea id="sentiment-text" placeholder="What's on your mind?"></textarea>
+                </div>
+                <button class="btn-submit" id="sentiment-btn" onclick="handleSentiment()">Analyze Sentiment</button>
+
+                <div class="loading" id="sentiment-loading">
+                    <div class="spinner"></div> Analyzing...
+                </div>
+
+                <div class="result-box" id="sentiment-result">
+                    <div class="result-title">Analysis</div>
+                    <div class="result-content" id="sentiment-output"></div>
+                </div>
+                <div class="error" id="sentiment-error" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
